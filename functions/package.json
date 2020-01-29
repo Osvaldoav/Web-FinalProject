@@ -1,0 +1,17 @@
+{
+  "name": "cloud-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "firebase": "^7.7.0",
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.3.0"
+  }
+}
