@@ -32,24 +32,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function Clients({firebase, isAuth, client, uid, setActivityFinal}){
   console.log('client', client);
-  const {firstName, lastName, phone, lent, received} = client;
+  const {firstName, lastName} = client;
 
   // return <div>Hola</div>;
   const classes = useStyles();
   const history = useHistory();
 
   const [activity, setActivity] = useState([]);
+  const [lent, setLent] = useState(client.lent);
+  const [received, setReceived] = useState(client.received);
+
   const url = 'https://us-central1-lenow-webwinter-266415.cloudfunctions.net/getClientActivity';
 
-  // function timeout(ms) {
-  //   return new Promise(resolve => setTimeout(resolve, ms));
-  // }
-
-  // async function getUser(){
-  //   const auth = firebase.auth();
-  //   await timeout(1000);
-  //   return auth.currentUser;
-  // }
 
   const onRegisterPayment = () => {
     history.push('/addPayment');
@@ -70,6 +64,18 @@ export default function Clients({firebase, isAuth, client, uid, setActivityFinal
     .then(data => {
       console.log('success!');
       setActivity(data);
+      let lentSum = 0;
+      let receivedSum = 0;
+
+      data.forEach(act => {
+        if(act.type === 'loan')
+          lentSum += parseInt(act.amount);
+        else
+          receivedSum += parseInt(act.amount);
+      });
+
+      setLent(lentSum);
+      setReceived(receivedSum);
     })
     .catch(error => {
       console.error('Error:', error);
