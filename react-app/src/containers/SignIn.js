@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -39,19 +38,20 @@ export default function SignIn(props) {
 
   const onClickSignIn = (e) => {
     e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
       .then(res => {
         setErrorMessage('');
-        history.push('/signup');
+        history.push('/');
       })
       .catch(err => {
+        console.log(err);
         setErrorMessage(err.message);
       });
   };
   
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in

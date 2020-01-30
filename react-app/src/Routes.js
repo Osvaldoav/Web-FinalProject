@@ -1,25 +1,28 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 import SignIn from './containers/SignIn';
 import SignUp from './containers/SignUp';
 import Home from './containers/Home';
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import Clients from './containers/Clients';
 
-const firebaseConfig = require('./firebaseConfig.json');
-firebase.initializeApp(firebaseConfig);
 
-export default function Routes() {
+export default function Routes({firebase, isAuth}) {
   return (
     <Switch>
       <Route path="/" exact>
-        <SignUp firebase={firebase}/>
+        <Home firebase={firebase} isAuth={isAuth}/>
       </Route>
-      <Route path="/sigin" exact>
-        <Home/>
+
+      <Route path="/clients" exact>
+        <Clients firebase={firebase} isAuth={isAuth}/>
       </Route>
-      <Route path="/signup" exact>
+
+      <Route path="/signin" exact>
         <SignIn firebase={firebase}/>
+      </Route>
+
+      <Route path="/signup" exact>
+        <SignUp firebase={firebase}/>
       </Route>
     </Switch>
   );
