@@ -10,9 +10,12 @@ firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const [client, setClient] = useState(null);
+  const [uid, setUid] = useState('');
 
   firebase.auth().onAuthStateChanged(function(usr) {
     if (usr) {
+      setUid(usr.uid);
       userHasAuthenticated(true);
       console.log('user is logged in');
     } else {
@@ -59,7 +62,7 @@ function App() {
     <div className="App">
       {renderNavBar()}
       <div className="body">
-        <Routes isAuth={isAuthenticated} firebase={firebase}/>
+        <Routes isAuth={isAuthenticated} firebase={firebase} setClient={setClient} client={client} uid={uid}/>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
-const createClient = (functions, db) => functions.https.onRequest((req, res) => {
+const createUser = (functions, db) => functions.https.onRequest((req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
 
   if (req.method === 'OPTIONS') {
-    res.set('Access-Control-Allow-Methods', 'GET');
+    res.set('Access-Control-Allow-Methods', '*');
     res.set('Access-Control-Allow-Headers', 'Content-Type');
     res.status(204).send('');
   } else {
@@ -26,4 +26,4 @@ const createClient = (functions, db) => functions.https.onRequest((req, res) => 
   }
 });
 
-module.exports = createClient; 
+module.exports = createUser; 
