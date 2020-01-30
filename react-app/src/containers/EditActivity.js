@@ -60,6 +60,29 @@ export default function EdictActivity({firebase, isAuth, client, uid, activity})
     } 
   };
 
+  const onDelete = (e) => {
+    e.preventDefault();
+    if(amount === '')
+      setErrorMessage('Please provide a valid amount.');
+    else {
+      fetch(deleteUrl, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({amount, uid, actUid: activity.uid, clientUid: client.uid, type: activity.type})
+      })
+      .then((data) => {
+        console.log('success!', data);
+        setErrorMessage('');
+        history.push('/clientInfo');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    } 
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
@@ -93,7 +116,7 @@ export default function EdictActivity({firebase, isAuth, client, uid, activity})
               variant="contained"
               color="primary"
               className={classes.submit}
-              // onClick={(e) => onRegisterPayment(e)}
+              onClick={(e) => onDelete(e)}
             >
               Delete
             </Button>

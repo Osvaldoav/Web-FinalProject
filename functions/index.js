@@ -7,6 +7,7 @@ const addPayment = require('./addPayment');
 const addLoan = require('./addLoan');
 const getClientActivity = require('./getClientActivity');
 const updatePayment = require('./updatePayment');
+const deletePayment = require('./deletePayment');
 
 // Cloud Firestore initialization
 const admin = require('firebase-admin');
@@ -23,3 +24,4 @@ exports.addPayment = addPayment(functions, db);
 exports.addLoan = addLoan(functions, db);
 exports.getClientActivity = getClientActivity(functions, db);
 exports.updatePayment = updatePayment(functions, db);
+exports.deletePayment = deletePayment(functions, db);

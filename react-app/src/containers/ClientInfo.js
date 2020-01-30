@@ -76,29 +76,6 @@ export default function Clients({firebase, isAuth, client, uid, setActivityFinal
     });
   }, []);
 
-  // useEffect(() => {
-  //   getUser()
-  //   .then((res) => {
-  //     fetch(`${url}?uid=${res.uid}`, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       }
-  //     })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log('success!');
-  //       setClients(data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error:', error);
-  //     });
-  //   })
-  //   .catch(error => {
-  //     console.error('Error', error);
-  //   });   
-  // }, []);
-
   if(isAuth){
     return(
       <div className="container">
