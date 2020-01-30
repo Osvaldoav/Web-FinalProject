@@ -47,29 +47,20 @@ export default function Clients({firebase, isAuth, setClient, uid}){
   };
   
   useEffect(() => {
-    // console.log('hey');
-    // getUser()
-    // .then((res) => {
-    //   console.log(res);
-
-      fetch(`${url}?uid=${uid}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('success!');
-        setClients(data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    // })
-    // .catch(error => {
-    //   console.error('Error', error);
-    // });   
+    fetch(`${url}?uid=${uid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('success!');
+      setClients(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }, []);
 
   if(isAuth){

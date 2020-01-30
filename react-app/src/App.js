@@ -11,6 +11,7 @@ firebase.initializeApp(firebaseConfig);
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [client, setClient] = useState(null);
+  const [activity, setActivity] = useState(null);
   const [uid, setUid] = useState('');
 
   firebase.auth().onAuthStateChanged(function(usr) {
@@ -48,7 +49,6 @@ function App() {
             <Link to="/" className="navItem">Home</Link>
             <Link to="/control" className="navItem">Control</Link>
             <Link to="/clients" className="navItem">Clients</Link>
-            <Link to="/loans" className="navItem">Loans</Link>
           </div>
           <div className="navRight">
             <Link to="/" className="navItem" onClick={() => handleLogout()}>Log out</Link>
@@ -62,7 +62,15 @@ function App() {
     <div className="App">
       {renderNavBar()}
       <div className="body">
-        <Routes isAuth={isAuthenticated} firebase={firebase} setClient={setClient} client={client} uid={uid}/>
+        <Routes 
+          isAuth={isAuthenticated} 
+          firebase={firebase} 
+          setClient={setClient} 
+          client={client} 
+          setActivity={setActivity} 
+          activity={activity} 
+          uid={uid}
+        />
       </div>
     </div>
   );

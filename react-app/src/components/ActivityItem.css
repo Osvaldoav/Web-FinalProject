@@ -1,0 +1,28 @@
+.activityItem {
+  display: flex;
+  /* justify-content: flex-start; */
+  padding: 10px 5px;
+  border-bottom: 1px solid lightslategray;
+  width: 400px;
+  border-radius: 5px;
+  border-left: 5px solid green;
+  margin: 10px 0;
+}
+
+.activityItem:hover{
+  background-color: #F0F0F0;
+  cursor: pointer;
+}
+
+.amount {
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.payment {
+  border-left: 5px solid green;
+}
+
+.loan{
+  border-left: 5px solid red;
+}

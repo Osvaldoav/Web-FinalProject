@@ -1,10 +1,12 @@
 // Import functions
-const simpleGet = require('./simpleGet');
 const createClient = require('./createClient');
 const createUser = require('./createUser');
 const getClients = require('./getClients');
 const getClientInfo = require('./getClientInfo');
 const addPayment = require('./addPayment');
+const addLoan = require('./addLoan');
+const getClientActivity = require('./getClientActivity');
+const updatePayment = require('./updatePayment');
 
 // Cloud Firestore initialization
 const admin = require('firebase-admin');
@@ -13,9 +15,11 @@ admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 
 // Export modules
-exports.simpleGet = simpleGet(functions, db);
 exports.createClient = createClient(functions, db);
 exports.createUser = createUser(functions, db);
 exports.getClients = getClients(functions, db);
 exports.getClientInfo = getClientInfo(functions, db);
 exports.addPayment = addPayment(functions, db);
+exports.addLoan = addLoan(functions, db);
+exports.getClientActivity = getClientActivity(functions, db);
+exports.updatePayment = updatePayment(functions, db);

@@ -1,4 +1,4 @@
-const getClients = (functions, db) => functions.https.onRequest((req, res) => {
+const getClientActivity = (functions, db) => functions.https.onRequest((req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
 
   if (req.method === 'OPTIONS') {
@@ -6,17 +6,17 @@ const getClients = (functions, db) => functions.https.onRequest((req, res) => {
     res.set('Access-Control-Allow-Headers', 'Content-Type');
     res.status(204).send('');
   } else {
-    const {uid} = req.query;
-    const docRef = db.collection('users').doc(uid).collection('clients');
+    const {uid, clientUid} = req.query;
+    const docRef = db.collection('users').doc(uid).collection('clients').doc(clientUid).collection('activity');
 
     return docRef.get()
       .then(snapshot => {
-        const clients = [];
+        const activity = [];
         snapshot.forEach(doc => {
-          clients.push({...doc.data(), uid: doc.id});
+          activity.push({...doc.data(), uid: doc.id});
         });
 
-        return res.status(200).send(clients);
+        return res.status(200).send(activity);
       })
       .catch(err => {
         return res.status(400).send(err);
@@ -24,4 +24,4 @@ const getClients = (functions, db) => functions.https.onRequest((req, res) => {
   }
 });
 
-module.exports = getClients; 
+module.exports = getClientActivity; 

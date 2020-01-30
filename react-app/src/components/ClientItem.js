@@ -2,7 +2,6 @@ import React from 'react';
 import {useHistory} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import AttachMoney from '@material-ui/icons/AttachMoney';
-import Link from '@material-ui/core/Link';
 import MoneyOff from '@material-ui/icons/MoneyOff';
 import './ClientItem.css';
 
